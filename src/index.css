@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-button {
+    @apply bg-slate-950 text-white py-2 px-3 rounded-md font-semibold;
+}
+
+.main-button {
+    @apply bg-gradient-to-bl from-purple-800 to-blue-500 text-white py-2 px-5 rounded font-semibold text-lg;
+}

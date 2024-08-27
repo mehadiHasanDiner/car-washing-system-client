@@ -17,7 +17,7 @@ const navLinks = [
   {
     icon: <MdOutlineMiscellaneousServices size={18} />,
     name: "Service",
-    path: "/services",
+    path: "/service",
   },
   {
     icon: <RiHealthBookFill size={18} />,
@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gradient-to-t p-2  shadow-md mb-6">
+    <header className="bg-gradient-to-t p-2  shadow-md mb-1">
       <div className=" flex justify-between">
         <nav className={isMenuOpen ? "" : "flex justify-between w-full"}>
           <div className="flex justify-between ">
