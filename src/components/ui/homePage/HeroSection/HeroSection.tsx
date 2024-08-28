@@ -87,10 +87,10 @@ const HeroSection = () => {
               <div className="text-white w-1/2 absolute top-0 md:top-1/3 right-0 p-8 lg:top-1/4">
                 <h3 className=" text-2xl lg:text-5xl ">{slider.text}</h3>
                 <div className="mt-6 flex justify-center">
-                  <button className=" card-button mr-2 text-sm">
+                  <button className=" button-primary mr-2 text-sm">
                     Schedule Service
                   </button>
-                  <button className="bg-gray-400 text-sm text-black py-2 px-3 rounded-md font-semibold">
+                  <button className="button-secondary">
                     Browse Bookings
                   </button>
                 </div>

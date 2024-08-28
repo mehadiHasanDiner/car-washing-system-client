@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gradient-to-t p-2  shadow-md mb-1">
+    <header className=" container mx-auto bg-gradient-to-t p-2  shadow-md mb-1">
       <div className=" flex justify-between">
         <nav className={isMenuOpen ? "" : "flex justify-between w-full"}>
           <div className="flex justify-between ">

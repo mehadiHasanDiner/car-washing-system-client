@@ -4,11 +4,13 @@ import Header from "../Header";
 
 const ManiLayout = () => {
   return (
-    <div className="container mx-auto ">
+    <>
       <Header></Header>
-      <Outlet></Outlet>
+      <div className="container mx-auto ">
+        <Outlet></Outlet>
+      </div>
       <Footer></Footer>
-    </div>
+    </>
   );
 };
 
