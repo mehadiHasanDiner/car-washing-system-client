@@ -15,3 +15,8 @@ const ManiLayout = () => {
 };
 
 export default ManiLayout;
+
+
+// Module 24: Intro to Redux
+// Module 25: Hands-on Redux Toolkit
+// Module 26: Fundamentals of RTK Query
