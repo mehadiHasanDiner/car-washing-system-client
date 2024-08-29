@@ -35,7 +35,7 @@ const prefixSelector = (
 
 const SignUpPage: React.FC = () => {
   return (
-    <div className="mx-auto flex justify-center items-center mt-16">
+    <div className="mx-auto flex justify-center items-center mt-16 h-[calc(100vh-400px)]">
       <div className="bg-purple-300  p-6 md:p-8  rounded-lg shadow-xl">
         <Form
           name="basic"
