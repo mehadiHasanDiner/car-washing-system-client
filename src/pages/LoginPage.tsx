@@ -2,12 +2,22 @@ import type { FormProps } from "antd";
 
 import { Button, Checkbox, Form, Input } from "antd";
 import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useLoginMutation } from "../redux/features/auth/authApi";
+import { useAppDispatch } from "../redux/hook";
+import { setUser } from "../redux/features/auth/authSlice";
+import { verifyToken } from "../utils/verifyToken";
 
 type FieldType = {
   email?: string;
   password?: string;
   remember?: string;
+};
+
+type Inputs = {
+  email: string;
+  password: string;
 };
 
 const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
@@ -19,6 +29,28 @@ const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
 };
 
 const LoginPage: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const [login, { error }] = useLoginMutation();
+  console.log("error", error);
+
+  const { register, handleSubmit } = useForm<Inputs>({
+    defaultValues: {
+      email: "mehadi@gmail.com",
+      password: "123456",
+    },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
+    const res = await login(userInfo).unwrap();
+    const user = verifyToken(res.data.accessToken);
+    console.log(user);
+    dispatch(setUser({ user: user, token: res.data.accessToken }));
+  };
+
   return (
     <div className="mx-auto flex justify-center items-center mt-12 h-[calc(100vh-384px)]">
       <div className="bg-purple-300  p-6 md:px-8 py-12  rounded-lg shadow-xl">
@@ -47,7 +79,7 @@ const LoginPage: React.FC = () => {
               },
             ]}
           >
-            <Input />
+            <Input {...register("email")} />
           </Form.Item>
 
           <Form.Item<FieldType>
@@ -56,7 +88,7 @@ const LoginPage: React.FC = () => {
             required={false}
             rules={[{ required: true, message: "Please input your password!" }]}
           >
-            <Input.Password />
+            <Input.Password {...register("password")} />
           </Form.Item>
 
           <Form.Item<FieldType>
