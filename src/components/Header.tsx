@@ -53,7 +53,6 @@ const Header = () => {
               </Link>
             </div>
           </div>
-
           <div className="pt-2 ">
             <ul
               className={
@@ -81,11 +80,12 @@ const Header = () => {
             </ul>
           </div>
         </nav>
+        {/* <p>Logout</p> */}
 
         {/* mobile menubar button */}
         <div className={isMenuOpen ? "" : "md:hidden mt-1"}>
           <button className="hover:text-purple-600" onClick={handleMenuToggle}>
-            {isMenuOpen ? <RxCross2 size={28} /> : <RiMenu3Fill size={26}/>}
+            {isMenuOpen ? <RxCross2 size={28} /> : <RiMenu3Fill size={26} />}
           </button>
         </div>
       </div>
