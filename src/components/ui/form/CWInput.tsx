@@ -1,0 +1,96 @@
+import { Form, Input, Select } from "antd";
+import React from "react";
+import {
+  Controller,
+  ControllerRenderProps,
+  RegisterOptions,
+} from "react-hook-form";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+
+interface CWInputProps {
+  type: string;
+  name: string;
+  label?: string | React.ReactNode;
+  rules?: RegisterOptions;
+  [key: string]: any;
+}
+
+const { Option } = Select;
+
+const prefixSelector = (
+  <Form.Item name="prefix" noStyle>
+    <Select style={{ width: 70 }}>
+      <Option value="88">+88</Option>
+      <Option value="91">+91</Option>
+      <Option value="92">+92</Option>
+    </Select>
+  </Form.Item>
+);
+
+const CWInput: React.FC<CWInputProps> = ({ type, name, label, rules }) => {
+  const renderInput = (field: ControllerRenderProps) => {
+    switch (type) {
+      case "password":
+        return (
+          <Input.Password
+            {...field}
+            type={type}
+            id={name}
+            placeholder="input password"
+            iconRender={(visible) =>
+              visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+            }
+          />
+        );
+      case "email":
+        return (
+          <Input
+            {...field}
+            placeholder="input email"
+            type={type}
+            id={name}
+          />
+        );
+      case "phone":
+        return (
+          <Input
+            addonBefore={prefixSelector}
+            style={{ width: "100%" }}
+            {...field}
+            placeholder="input email"
+            type={type}
+            id={name}
+          />
+        );
+      default:
+        return (
+          <Input
+            {...field}
+            placeholder="Please enter your input"
+            type={type}
+            id={name}
+          />
+        );
+    }
+  };
+
+  return (
+    <>
+      {label && <label htmlFor={name}>{label}</label>}
+      <Controller
+        name={name}
+        rules={rules}
+        render={({ field, fieldState }) => (
+          <>
+            {renderInput(field)}
+            {fieldState.error && (
+              <span style={{ color: "red" }}>{fieldState.error.message}</span>
+            )}
+          </>
+        )}
+      />
+    </>
+  );
+};
+
+export default CWInput;

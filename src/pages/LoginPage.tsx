@@ -1,31 +1,17 @@
-import type { FormProps } from "antd";
-
-import { Button, Checkbox, Form, Input } from "antd";
 import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/verifyToken";
-
-type FieldType = {
-  email?: string;
-  password?: string;
-  remember?: string;
-};
+import { Button } from "antd";
+import CWForm from "../components/ui/form/CWForm";
+import CWInput from "../components/ui/form/CWInput";
 
 type Inputs = {
   email: string;
   password: string;
-};
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
 };
 
 const LoginPage: React.FC = () => {
@@ -33,12 +19,21 @@ const LoginPage: React.FC = () => {
   const [login, { error }] = useLoginMutation();
   console.log("error", error);
 
-  const { register, handleSubmit } = useForm<Inputs>({
-    defaultValues: {
-      email: "mehadi@gmail.com",
-      password: "123456",
-    },
-  });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm({
+  //   defaultValues: {
+  //     email: "mehadi@gmail.com",
+  //     password: "123456",
+  //   },
+  // });
+
+  const defaultValues = {
+    email: "mehadi@gmail.com",
+    password: "123456",
+  };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const userInfo = {
@@ -49,62 +44,48 @@ const LoginPage: React.FC = () => {
     const user = verifyToken(res.data.accessToken);
     console.log(user);
     dispatch(setUser({ user: user, token: res.data.accessToken }));
+    // console.log(data);
   };
 
   return (
     <div className="mx-auto flex justify-center items-center mt-12 h-[calc(100vh-384px)]">
       <div className="bg-purple-300  p-6 md:px-8 py-12  rounded-lg shadow-xl">
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          style={{ maxWidth: 600 }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <Form.Item<FieldType>
-            label="E-mail"
-            name="email"
-            required={false}
-            rules={[
-              {
-                type: "email",
-                message: "The input is not valid E-mail!",
-              },
-              {
-                required: true,
-                message: "Please input your E-mail!",
-              },
-            ]}
-          >
-            <Input {...register("email")} />
-          </Form.Item>
+        <CWForm onSubmit={onSubmit} defaultValues={defaultValues}>
+          <div>
+            <CWInput
+              type="email"
+              label="Email"
+              name="email"
+              rules={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Invalid email address",
+                },
+              }}
+            />
+          </div>
 
-          <Form.Item<FieldType>
-            label="Password"
-            name="password"
-            required={false}
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password {...register("password")} />
-          </Form.Item>
+          <div>
+            <CWInput
+              type="password"
+              name="password"
+              label="Password "
+              rules={{
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              }}
+            />
+          </div>
 
-          <Form.Item<FieldType>
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{ offset: 8, span: 16 }}
-          >
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
+          <Button className="button-card my-3" htmlType="submit">
+            Submit
+          </Button>
+        </CWForm>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button className="button-card" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
         <p className="text-center">
           New to Car-expert? Please{" "}
           <Link
@@ -112,7 +93,7 @@ const LoginPage: React.FC = () => {
             to="/sign-up"
           >
             Sign Up
-          </Link>{" "}
+          </Link>
         </p>
       </div>
     </div>

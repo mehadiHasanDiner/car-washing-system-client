@@ -1,117 +1,98 @@
-import type { FormProps } from "antd";
-
-import { Button, Form, Input, Select } from "antd";
+import { Button, Form } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
+import CWForm from "../components/ui/form/CWForm";
+import { SubmitHandler } from "react-hook-form";
+import CWInput from "../components/ui/form/CWInput";
 
-type FieldType = {
-  name?: string;
-  phone?: number;
-  address?: string;
-  email?: string;
-  password?: string;
-  remember?: string;
+type Inputs = {
+  email: string;
+  password: string;
 };
-
-const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
-const { Option } = Select;
-
-const prefixSelector = (
-  <Form.Item name="prefix" noStyle>
-    <Select style={{ width: 70 }}>
-      <Option value="88">+88</Option>
-      <Option value="91">+91</Option>
-      <Option value="92">+92</Option>
-    </Select>
-  </Form.Item>
-);
 
 const SignUpPage: React.FC = () => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    // const userInfo = {
+    //   email: data.email,
+    //   password: data.password,
+    // };
+    // const res = await login(userInfo).unwrap();
+    // const user = verifyToken(res.data.accessToken);
+    // console.log(user);
+    // dispatch(setUser({ user: user, token: res.data.accessToken }));
+    console.log(data);
+  };
+
   return (
-    <div className="mx-auto flex justify-center items-center mt-16 h-[calc(100vh-400px)]">
+    <div className="mx-auto flex justify-center items-center mt-16">
       <div className="bg-purple-300  p-6 md:p-8  rounded-lg shadow-xl">
-        <Form
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          style={{ maxWidth: 600 }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <Form.Item<FieldType>
-            label="Name"
-            name="name"
-            required={false}
-            rules={[{ required: true, message: "Please input your name!" }]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item<FieldType>
-            label="E-mail"
-            name="email"
-            required={false}
-            rules={[
-              {
-                type: "email",
-                message: "The input is not valid E-mail!",
-              },
-              {
-                required: true,
-                message: "Please input your E-mail!",
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item<FieldType>
-            label="Password"
-            name="password"
-            required={false}
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password />
-          </Form.Item>
-
-          <Form.Item<FieldType>
-            label="Phone"
-            name="phone"
-            required={false}
-            rules={[
-              { required: true, message: "Please input your phone number!" },
-            ]}
-          >
-            <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
-          </Form.Item>
-
-          <Form.Item<FieldType>
-            label="Address"
-            name="address"
-            required={false}
-            rules={[
-              { required: true, message: "Please input your present address!" },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+        <CWForm onSubmit={onSubmit}>
+          <div>
+            <CWInput
+              type="name"
+              name="name"
+              label="Name "
+              rules={{
+                required: "Name is required",
+              }}
+            />
+          </div>
+          <div>
+            <CWInput
+              type="email"
+              label="Email"
+              name="email"
+              rules={{
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Invalid email address",
+                },
+              }}
+            />
+          </div>
+          <div>
+            <CWInput
+              type="password"
+              name="password"
+              label="Password "
+              rules={{
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              }}
+            />
+          </div>
+          <div>
+            <CWInput
+              type="phone"
+              name="phone"
+              label="Mobile No: "
+              rules={{
+                required: "Mobile No. is required",
+              }}
+            />
+          </div>
+          <div>
+            <CWInput
+              type="address"
+              name="address"
+              label="Address "
+              rules={{
+                required: "Address is required",
+              }}
+            />
+          </div>
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button className="button-card" htmlType="submit">
+            <Button className="button-card my-3" htmlType="submit">
               Submit
             </Button>
           </Form.Item>
-        </Form>
-        <p className="text-center">
+        </CWForm>
+        <p className="text-center -mt-6">
           Already have an account? Please{" "}
           <Link
             className="text-purple-800 font-semibold hover:font-bold"
