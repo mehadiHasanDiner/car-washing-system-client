@@ -8,6 +8,7 @@ import { verifyToken } from "../utils/verifyToken";
 import { Button } from "antd";
 import CWForm from "../components/ui/form/CWForm";
 import CWInput from "../components/ui/form/CWInput";
+import { toast } from "sonner";
 
 type Inputs = {
   email: string;
@@ -42,9 +43,10 @@ const LoginPage: React.FC = () => {
     };
     const res = await login(userInfo).unwrap();
     const user = verifyToken(res.data.accessToken);
-    console.log(user);
+    // console.log(user);
     dispatch(setUser({ user: user, token: res.data.accessToken }));
     // console.log(data);
+    toast("User successfully logged in!");
   };
 
   return (

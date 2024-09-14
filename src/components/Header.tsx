@@ -1,39 +1,66 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "./../assets/images/logo.png";
 import { BiSolidLogIn } from "react-icons/bi";
+import { MdDashboardCustomize } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import { MdOutlineMiscellaneousServices } from "react-icons/md";
+import { BiSolidLogOut } from "react-icons/bi";
+
 import { RiHealthBookFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { RiMenu3Fill } from "react-icons/ri";
+import { useAppSelector } from "../redux/hook";
 
-const navLinks = [
-  {
-    icon: <FaHome size={18} />,
-    name: "Home",
-    path: "/",
-  },
-  {
-    icon: <MdOutlineMiscellaneousServices size={18} />,
-    name: "Service",
-    path: "/service",
-  },
-  {
-    icon: <RiHealthBookFill size={18} />,
-    name: "Booking",
-    path: "/booking",
-  },
+type UserRole = "admin" | "user";
 
-  {
-    icon: <BiSolidLogIn size={18} />,
-    name: "Login",
-    path: "/login",
-  },
-];
+type TNavItem = {
+  icon: ReactNode;
+  name: string;
+  path?: string | UserRole;
+};
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useAppSelector((state) => state.auth) || null;
+  console.log(user);
+
+  const navLinks: TNavItem[] = [
+    {
+      icon: <FaHome size={18} />,
+      name: "Home",
+      path: "/",
+    },
+    {
+      icon: <MdOutlineMiscellaneousServices size={18} />,
+      name: "Service",
+      path: "/service",
+    },
+    {
+      icon: <RiHealthBookFill size={18} />,
+      name: "Booking",
+      path: "/booking",
+    },
+
+    user
+      ? {
+          icon: <MdDashboardCustomize />,
+          name: "Dashboard",
+          path: `/dashboard/${user?.role === "admin" ? "admin" : "user"}`,
+        }
+      : {
+          icon: <BiSolidLogIn size={18} />,
+          name: "Login",
+          path: "/login",
+        },
+    // user
+    //   ? {
+    //       icon: <BiSolidLogOut />,
+    //       name: "Logout",
+    //       path: "",
+    //     }
+    //   : "",
+  ];
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
