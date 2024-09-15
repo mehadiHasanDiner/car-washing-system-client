@@ -1,6 +1,6 @@
 import React from "react";
 import { SubmitHandler } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authSlice";
@@ -17,8 +17,10 @@ type Inputs = {
 
 const LoginPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [login, { error }] = useLoginMutation();
-  console.log("error", error);
+  const [login] = useLoginMutation();
+  // console.log(err?.data?.message);
+
+  const navigate = useNavigate();
 
   // const {
   //   register,
@@ -41,12 +43,32 @@ const LoginPage: React.FC = () => {
       email: data.email,
       password: data.password,
     };
-    const res = await login(userInfo).unwrap();
-    const user = verifyToken(res.data.accessToken);
-    // console.log(user);
-    dispatch(setUser({ user: user, token: res.data.accessToken }));
-    // console.log(data);
-    toast("User successfully logged in!");
+
+    try {
+      const { data, error: err } = await login(userInfo);
+      console.log(err);
+      const error: any = err;
+      if (error) {
+        if (error?.data?.message === "User Not Found") {
+          return toast.error("Invalid email address", {
+            description: "Enter a valid email adress.",
+          });
+        }
+        if (error?.status === 500) {
+          // console.log("first")
+          return toast("password did not matched");
+        }
+
+        return toast.error(error?.data?.message || "Unknown error occureds");
+      }
+      const user = verifyToken(data.data.accessToken);
+
+      dispatch(setUser({ user: user, token: data.data.accessToken }));
+      navigate(`/dashboard-${user?.role}`);
+      toast.success("User successfully logged in!");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

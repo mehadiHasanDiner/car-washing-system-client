@@ -10,7 +10,9 @@ import { BiSolidLogOut } from "react-icons/bi";
 import { RiHealthBookFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { RiMenu3Fill } from "react-icons/ri";
-import { useAppSelector } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { Button } from "antd";
+import { logout } from "../redux/features/auth/authSlice";
 
 type UserRole = "admin" | "user";
 
@@ -46,21 +48,29 @@ const Header = () => {
       ? {
           icon: <MdDashboardCustomize />,
           name: "Dashboard",
-          path: `/dashboard/${user?.role === "admin" ? "admin" : "user"}`,
+          path: `/dashboard-${user?.role === "admin" ? "admin" : "user"}`,
         }
       : {
           icon: <BiSolidLogIn size={18} />,
           name: "Login",
           path: "/login",
         },
-    // user
-    //   ? {
-    //       icon: <BiSolidLogOut />,
-    //       name: "Logout",
-    //       path: "",
-    //     }
-    //   : "",
   ];
+
+  const active = {
+    fontWeight: "bold",
+    color: "purple", // Active state style
+  };
+
+  const inactive = {
+    fontWeight: "normal",
+    color: "black", // Inactive state style
+  };
+
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -90,20 +100,33 @@ const Header = () => {
             >
               {navLinks.map((navItem, index) => (
                 <li className=" hover:text-purple-600" key={index}>
-                  <NavLink
-                    // style={({ isActive }: { isActive: boolean }) =>
-                    //   isActive ? active : inactive
-                    // }
-                    to={navItem.path}
-                  >
-                    <div className="flex items-center">
-                      {" "}
-                      <span className="mr-1">{navItem.icon}</span>{" "}
-                      {navItem.name}
-                    </div>
-                  </NavLink>
+                  {navItem.path && (
+                    <NavLink
+                      style={({ isActive }: { isActive: boolean }) =>
+                        isActive ? active : inactive
+                      }
+                      to={navItem.path}
+                    >
+                      <div className="flex items-center">
+                        <span className="mr-1">{navItem.icon}</span>
+                        {navItem.name}
+                      </div>
+                    </NavLink>
+                  )}
                 </li>
               ))}
+              <li className="-mt-1 mb-1 ">
+                {user ? (
+                  <Button
+                    onClick={handleLogout}
+                    className=" flex items-center bg-purple-600 text-white"
+                  >
+                    <BiSolidLogOut size={18} /> Logout
+                  </Button>
+                ) : (
+                  ""
+                )}
+              </li>
             </ul>
           </div>
         </nav>
