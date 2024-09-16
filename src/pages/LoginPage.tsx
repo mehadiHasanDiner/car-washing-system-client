@@ -51,15 +51,15 @@ const LoginPage: React.FC = () => {
       if (error) {
         if (error?.data?.message === "User Not Found") {
           return toast.error("Invalid email address", {
-            description: "Enter a valid email adress.",
+            description: "Enter a valid email address.",
           });
         }
         if (error?.status === 500) {
           // console.log("first")
-          return toast("password did not matched");
+          return toast("password did not match");
         }
 
-        return toast.error(error?.data?.message || "Unknown error occureds");
+        return toast.error(error?.data?.message || "Unknown error occurs");
       }
       const user = verifyToken(data.data.accessToken);
 

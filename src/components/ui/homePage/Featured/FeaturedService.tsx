@@ -16,6 +16,11 @@ const FeaturedService = () => {
 
   return (
     <div className="mt-12">
+      <div className="text-center space-y-4 mb-3">
+        <h1 className="text-4xl font-semibold"> Our Top Services</h1>
+        <p className="text-xl">Top 6 popular services you can chose from us</p>
+      </div>
+
       <CarouselProvider
         naturalSlideWidth={100}
         naturalSlideHeight={150}
@@ -50,7 +55,7 @@ const FeaturedService = () => {
             </Slide>
           ))}
         </Slider>
-        <div className="text-center space-x-4 absolute right-24 top-[950px] hidden md:block ">
+        <div className="text-center space-x-4 absolute right-24 -bottom-[340px] hidden md:block ">
           <ButtonBack className="hover:bg-slate-800 hover:text-white  rounded p-1">
             <AiOutlineArrowLeft size={20} />
           </ButtonBack>

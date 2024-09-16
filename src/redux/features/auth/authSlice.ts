@@ -4,11 +4,13 @@ import { RootState } from "../../store";
 type TAuthState = {
   user: null | object;
   token: null | string;
+  isAuthLoading: boolean;
 };
 
 const initialState: TAuthState = {
   user: null,
   token: null,
+  isAuthLoading: false,
 };
 
 const authSlice = createSlice({
@@ -20,6 +22,9 @@ const authSlice = createSlice({
       state.user = user;
       state.token = token;
     },
+    setAuthLoading(state, action) {
+      state.isAuthLoading = action.payload;
+    },
     logout: (state) => {
       state.user = null;
       state.token = null;
@@ -27,7 +32,8 @@ const authSlice = createSlice({
   },
 });
 
-export const {setUser, logout} = authSlice.actions
+export const { setUser, setAuthLoading, logout } = authSlice.actions;
 export default authSlice.reducer;
-export const useCurrentToken = (state:RootState) => state.auth.token; 
-export const selectCurrentUser = (state:RootState) => state.auth.user; 
+
+export const useCurrentToken = (state: RootState) => state.auth.token;
+export const selectCurrentUser = (state: RootState) => state.auth.user;
