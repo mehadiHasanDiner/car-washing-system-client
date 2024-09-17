@@ -25,7 +25,7 @@ type TNavItem = {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user } = useAppSelector((state) => state.auth) || null;
-  console.log(user);
+  // console.log(user);
 
   const navLinks: TNavItem[] = [
     {
@@ -46,15 +46,15 @@ const Header = () => {
 
     user
       ? {
-          icon: <MdDashboardCustomize />,
-          name: "Dashboard",
-          path: `/dashboard-${user?.role === "admin" ? "admin" : "user"}`,
-        }
+        icon: <MdDashboardCustomize />,
+        name: "Dashboard",
+        path: `/dashboard-${user?.role === "admin" ? "admin" : "user"}`,
+      }
       : {
-          icon: <BiSolidLogIn size={18} />,
-          name: "Login",
-          path: "/login",
-        },
+        icon: <BiSolidLogIn size={18} />,
+        name: "Login",
+        path: "/login",
+      },
   ];
 
   const active = {

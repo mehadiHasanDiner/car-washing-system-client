@@ -38,7 +38,7 @@ const ReviewSection = () => {
 
   return (
     <div className="mt-20">
-      <div className="relative bg-white my-shadow-1 rounded-md p-4">
+      <div className="relative bg-white my-shadow-1 rounded-xl p-4">
         <div className="-mb-4">
           <h1 className="text-4xl font-semibold">Review</h1>
           <p className="text-xl mt-2">
@@ -47,14 +47,14 @@ const ReviewSection = () => {
         </div>
 
         {!user && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 rounded-md z-50">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 rounded-xl z-50">
             <p className="text-xl text-purple-200">
               Please log in for submitting you valuable review
             </p>
             <Button
               style={{ marginTop: "10px" }}
               className="cursor-pointer button-card"
-              onClick={() => navigate("/signin")}
+              onClick={() => navigate("/login")}
             >
               Login
             </Button>
@@ -80,7 +80,7 @@ const ReviewSection = () => {
               Submit
             </Button>
           </div>
-          <div className="rounded-md my-shadow-1 my-4 p-7">
+          <div className="rounded-xl my-shadow-1 my-4 p-7">
             <Typography.Title level={4}>
               Average Rating: {averageRating.toFixed(1)} / 5
             </Typography.Title>
