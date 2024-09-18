@@ -1,4 +1,4 @@
-import BookingPage from "../pages/BookingPage";
+import UserReview from "../pages/UserReview";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import ServicePage from "../pages/ServicePage";
@@ -14,16 +14,15 @@ export const pageRoutes = [
     element: <ServicePage></ServicePage>,
   },
   {
-    path: "booking",
-    element: <BookingPage></BookingPage>,
+    path: "user-review",
+    element: <UserReview></UserReview>,
   },
   {
-        path: "login",
-        element: <LoginPage></LoginPage>,
-    },
-    {
-        path: "sign-up",
-        element: <SignUpPage></SignUpPage>,
-    },
-
+    path: "login",
+    element: <LoginPage></LoginPage>,
+  },
+  {
+    path: "sign-up",
+    element: <SignUpPage></SignUpPage>,
+  },
 ];

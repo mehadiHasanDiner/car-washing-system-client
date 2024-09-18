@@ -23,11 +23,11 @@ const ReviewSection = () => {
       const newReview = {
         rating,
         feedback,
-        user: user?.name || "Anonymous",
+        user: user?.name,
       };
-      setReviews([...reviews, newReview]);
-      setRating(0);
-      setFeedback("");
+      // setReviews([...reviews, newReview]);
+      // setRating(0);
+      // setFeedback("");
     }
   };
 
@@ -102,7 +102,7 @@ const ReviewSection = () => {
         <Button
           type="default"
           onClick={() => {
-            /* Redirect to Reviews page */
+            navigate("/user-review");
           }}
         >
           See Latest Reviews

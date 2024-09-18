@@ -5,7 +5,4 @@ export type TReview = {
   user: TUser;
   comment: string;
   rating: number;
-  createdAt: string; 
-  updatedAt: string; 
-  __v: number;
 };

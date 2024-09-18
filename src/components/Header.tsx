@@ -7,7 +7,7 @@ import { FaHome } from "react-icons/fa";
 import { MdOutlineMiscellaneousServices } from "react-icons/md";
 import { BiSolidLogOut } from "react-icons/bi";
 
-import { RiHealthBookFill } from "react-icons/ri";
+import { MdOutlineRateReview } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { RiMenu3Fill } from "react-icons/ri";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
@@ -39,22 +39,22 @@ const Header = () => {
       path: "/service",
     },
     {
-      icon: <RiHealthBookFill size={18} />,
-      name: "Booking",
-      path: "/booking",
+      icon: <MdOutlineRateReview size={18} />,
+      name: "User Review",
+      path: "/user-review",
     },
 
     user
       ? {
-        icon: <MdDashboardCustomize />,
-        name: "Dashboard",
-        path: `/dashboard-${user?.role === "admin" ? "admin" : "user"}`,
-      }
+          icon: <MdDashboardCustomize />,
+          name: "Dashboard",
+          path: `/dashboard-${user?.role === "admin" ? "admin" : "user"}`,
+        }
       : {
-        icon: <BiSolidLogIn size={18} />,
-        name: "Login",
-        path: "/login",
-      },
+          icon: <BiSolidLogIn size={18} />,
+          name: "Login",
+          path: "/login",
+        },
   ];
 
   const active = {
