@@ -27,7 +27,13 @@ const prefixSelector = (
   </Form.Item>
 );
 
-const CWInput: React.FC<CWInputProps> = ({ type, name, label, rules }) => {
+const CWInput: React.FC<CWInputProps> = ({
+  type,
+  name,
+  label,
+  rules,
+  placeholder,
+}) => {
   const renderInput = (field: ControllerRenderProps) => {
     switch (type) {
       case "password":
@@ -36,7 +42,7 @@ const CWInput: React.FC<CWInputProps> = ({ type, name, label, rules }) => {
             {...field}
             type={type}
             id={name}
-            placeholder="input password"
+            placeholder={placeholder}
             iconRender={(visible) =>
               visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
             }
@@ -44,12 +50,7 @@ const CWInput: React.FC<CWInputProps> = ({ type, name, label, rules }) => {
         );
       case "email":
         return (
-          <Input
-            {...field}
-            placeholder="input email"
-            type={type}
-            id={name}
-          />
+          <Input {...field} placeholder={placeholder} type={type} id={name} />
         );
       case "phone":
         return (
@@ -57,7 +58,7 @@ const CWInput: React.FC<CWInputProps> = ({ type, name, label, rules }) => {
             addonBefore={prefixSelector}
             style={{ width: "100%" }}
             {...field}
-            placeholder="input email"
+            placeholder={placeholder}
             type={type}
             id={name}
           />
@@ -66,7 +67,7 @@ const CWInput: React.FC<CWInputProps> = ({ type, name, label, rules }) => {
         return (
           <Input
             {...field}
-            placeholder="Please enter your input"
+            placeholder={placeholder}
             type={type}
             id={name}
           />

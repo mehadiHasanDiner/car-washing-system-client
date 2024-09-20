@@ -1,11 +1,21 @@
-import { Breadcrumb, BreadcrumbItem, Empty, EmptyDescription, EmptyImage, EmptyTitle, Label, Radio, Slider, Input } from "keep-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Empty,
+  EmptyDescription,
+  EmptyImage,
+  EmptyTitle,
+  Label,
+  Radio,
+  Slider,
+  Input,
+} from "keep-react";
 import { useGetAllServicesQuery } from "../redux/features/services/servicesApi";
 import { BiCaretRight } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import { TService } from "../types/service.types";
-import ServiceCardDetails from "../components/ui/servicePage/serviceCardDetails";
-
+import ServiceCardDetails from "../components/ui/servicePage/ServiceCardDetails";
 
 const priceRanges = [
   { label: "0-50", priceRange: [0, 50] },
@@ -15,17 +25,18 @@ const priceRanges = [
   { label: "200-250", priceRange: [200, 250] },
 ];
 
-
 const ServicePage = () => {
   const navigate = useNavigate();
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
   const [priceRange, setPriceRange] = useState<number[] | []>([0, 250]);
-  const { data: services, isLoading: isServiceLoading } = useGetAllServicesQuery([
-    { name: "name", value: search },
-    { name: "priceRange", value: priceRange },
-    { name: "sort", value: sort },
-  ]);
+  const { data: services, isLoading: isServiceLoading } =
+    useGetAllServicesQuery([
+      { name: "name", value: search },
+      { name: "priceRange", value: priceRange },
+      { name: "sort", value: sort },
+    ]);
+  console.log(isServiceLoading);
 
   const onPriceValueChange = (value: number[]) => {
     setTimeout(() => {
@@ -42,7 +53,8 @@ const ServicePage = () => {
 
     if (name === "sort") setSort(value);
 
-    if (name === "priceRange") setPriceRange(value.split(",").map((item) => Number(item)));
+    if (name === "priceRange")
+      setPriceRange(value.split(",").map((item) => Number(item)));
   };
 
   return (
@@ -82,8 +94,8 @@ const ServicePage = () => {
                   <Slider
                     onValueChange={onPriceValueChange}
                     min={0}
-                    max={1000}
-                    defaultValue={[0, 1000]}
+                    max={250}
+                    defaultValue={[0, 250]}
                   />
                   <div className="flex items-center justify-between mt-2">
                     <span className="text-slate-700">{priceRange[0]}</span>
@@ -160,28 +172,28 @@ const ServicePage = () => {
               <div className="md:col-span-2 gap-5 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {isServiceLoading
                   ? Array.from({ length: 6 })?.map((_, id) => (
-                    <div
-                      key={id}
-                      className="bg-white space-y-2 w-full h-full animate-pulse p-5 border border-slate-200"
-                    >
-                      <div className="w-full h-60 sm:h-40 bg-gray-100"></div>
-                      <div className="flex items-center gap-2 w-1/2">
-                        <div className="w-full h-5 bg-gray-100"></div>
-                        <div className="w-full h-5 bg-gray-100"></div>
+                      <div
+                        key={id}
+                        className="bg-white space-y-2 w-full h-full animate-pulse p-5 border border-slate-200"
+                      >
+                        <div className="w-full h-60 sm:h-40 bg-gray-100"></div>
+                        <div className="flex items-center gap-2 w-1/2">
+                          <div className="w-full h-5 bg-gray-100"></div>
+                          <div className="w-full h-5 bg-gray-100"></div>
+                        </div>
+                        <div className="w-full h-7 bg-gray-100"></div>
+                        <div className="space-y-1">
+                          <div className="w-full h-3 bg-gray-100"></div>
+                          <div className="w-full h-3 bg-gray-100"></div>
+                          <div className="w-full h-3 bg-gray-100"></div>
+                        </div>
                       </div>
-                      <div className="w-full h-7 bg-gray-100"></div>
-                      <div className="space-y-1">
-                        <div className="w-full h-3 bg-gray-100"></div>
-                        <div className="w-full h-3 bg-gray-100"></div>
-                        <div className="w-full h-3 bg-gray-100"></div>
-                      </div>
-                    </div>
-                  ))
+                    ))
                   : services?.data?.map((service: TService) => (
-                    <div key={service._id}>
-                      <ServiceCardDetails service={service} />
-                    </div>
-                  ))}
+                      <div key={service._id}>
+                        <ServiceCardDetails service={service} />
+                      </div>
+                    ))}
               </div>
             )}
           </div>

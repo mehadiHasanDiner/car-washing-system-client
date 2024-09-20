@@ -36,7 +36,7 @@ const Header = () => {
     {
       icon: <MdOutlineMiscellaneousServices size={18} />,
       name: "Service",
-      path: "/service",
+      path: "/services",
     },
     {
       icon: <MdOutlineRateReview size={18} />,

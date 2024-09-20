@@ -1,3 +1,4 @@
+@import "keep-react/css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,4 +13,8 @@
 
 .button-card {
     @apply bg-gradient-to-bl from-purple-800 to-blue-500 text-white py-2 px-5 rounded font-semibold;
+}
+
+.keep-modal {
+    z-index: 10 !important;
 }

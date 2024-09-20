@@ -31,7 +31,8 @@ const SignUpPage: React.FC = () => {
             <CWInput
               type="name"
               name="name"
-              label="Name "
+              label="Name"
+              placeholder="Enter name name"
               rules={{
                 required: "Name is required",
               }}
@@ -42,6 +43,7 @@ const SignUpPage: React.FC = () => {
               type="email"
               label="Email"
               name="email"
+              placeholder="Enter your Email"
               rules={{
                 required: "Email is required",
                 pattern: {
@@ -55,7 +57,8 @@ const SignUpPage: React.FC = () => {
             <CWInput
               type="password"
               name="password"
-              label="Password "
+              label="Password"
+              placeholder="Enter your password"
               rules={{
                 required: "Password is required",
                 minLength: {
@@ -69,6 +72,7 @@ const SignUpPage: React.FC = () => {
             <CWInput
               type="phone"
               name="phone"
+              placeholder="Enter your phone number"
               label="Mobile No: "
               rules={{
                 required: "Mobile No. is required",
@@ -79,7 +83,8 @@ const SignUpPage: React.FC = () => {
             <CWInput
               type="address"
               name="address"
-              label="Address "
+              label="Address"
+              placeholder="Enter your present address"
               rules={{
                 required: "Address is required",
               }}

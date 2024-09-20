@@ -80,6 +80,7 @@ const LoginPage: React.FC = () => {
               type="email"
               label="Email"
               name="email"
+              placeholder="enter your email address"
               rules={{
                 required: "Email is required",
                 pattern: {
@@ -95,6 +96,7 @@ const LoginPage: React.FC = () => {
               type="password"
               name="password"
               label="Password "
+              placeholder="enter your password"
               rules={{
                 required: "Password is required",
                 minLength: {

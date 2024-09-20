@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./redux/store.ts";
 import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "sonner";
+
 // import 'antd/dist/reset.css'; // Import Ant Design CSS
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
