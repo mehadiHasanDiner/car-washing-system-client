@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import ServicePage from "../pages/ServicePage";
 import SignUpPage from "../pages/SignUpPage";
 import ServiceDetailsPage from "../pages/ServiceDetailsPage";
+import UserProtectedRoute from "../components/Layout/ProtectedLayout/UserProtectedRoute";
 
 export const pageRoutes = [
   {
@@ -18,7 +19,11 @@ export const pageRoutes = [
   {
     index: true,
     path: "services/:id",
-    element: <ServiceDetailsPage></ServiceDetailsPage>,
+    element: (
+      <UserProtectedRoute>
+        <ServiceDetailsPage></ServiceDetailsPage>
+      </UserProtectedRoute>
+    ),
   },
   {
     index: true,

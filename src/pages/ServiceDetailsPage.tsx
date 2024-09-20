@@ -45,8 +45,7 @@ const ServiceDetailsPage = () => {
     slotId: string;
     slot: string;
   } | null>(null);
-  const { serviceId } = useParams();
-  console.log(serviceId);
+  const { id: serviceId } = useParams();
   const { data: service, isLoading: isServiceLoading } =
     useGetSingleServicesQuery(serviceId as string);
 
@@ -207,7 +206,7 @@ const ServiceDetailsPage = () => {
                         <div className="w-40 h-28 overflow-hidden">
                           <img
                             className="w-full h-full object-contain"
-                            // src={empty_image}
+                            src="https://img.freepik.com/free-vector/hand-drawn-no-data-concept_52683-127823.jpg"
                             alt="Empty Image"
                           />
                         </div>
@@ -244,17 +243,7 @@ const ServiceDetailsPage = () => {
                               Vehicle Information
                             </h4>
                           </div>
-                          <CWForm
-                            // defaultValues={{
-                            //     vehicleType: "truck",
-                            //     vehicleBrand: "Ford",
-                            //     vehicleModel: "Explorer",
-                            //     manufacturingYear: 2021,
-                            //     registrationPlate: "XYZ456",
-                            // }}
-
-                            onSubmit={handleBooking}
-                          >
+                          <CWForm onSubmit={handleBooking}>
                             <div className="space-y-3 mb-5">
                               <CWInput
                                 type="vehicleType"
