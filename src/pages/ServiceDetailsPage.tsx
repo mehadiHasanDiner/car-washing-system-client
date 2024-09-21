@@ -46,6 +46,7 @@ const ServiceDetailsPage = () => {
     slot: string;
   } | null>(null);
   const { id: serviceId } = useParams();
+  
   const { data: service, isLoading: isServiceLoading } =
     useGetSingleServicesQuery(serviceId as string);
 

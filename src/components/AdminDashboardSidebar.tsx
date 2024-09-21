@@ -1,32 +1,48 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
-import { useAppSelector } from "../../../redux/hook";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../redux/hook";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/features/auth/authSlice";
+import { logout } from "../redux/features/auth/authSlice";
 import { CiLogout, CiUser } from "react-icons/ci";
-import { RiLockPasswordLine, RiUserSettingsLine } from "react-icons/ri";
+import { RiUserSettingsLine } from "react-icons/ri";
+import { FaCheckToSlot } from "react-icons/fa6";
+import { TbBrandBooking } from "react-icons/tb";
 
-export const userProfileLinks = [
+export const adminProfileLinks = [
   {
-    href: "/dashboard-user",
+    href: "/dashboard-admin",
     label: "Profile",
     Icon: CiUser,
   },
   {
-    href: "/dashboard-user/update-info",
-    label: "Account setting",
+    href: "/dashboard-admin/services",
+    label: "Manage Services",
     Icon: RiUserSettingsLine,
   },
   {
-    href: "/dashboard-user/my-bookings",
-    label: "My Bookings",
-    Icon: RiLockPasswordLine,
+    href: "/dashboard-admin/slots",
+    label: "Manage Slots",
+    Icon: FaCheckToSlot,
+  },
+  {
+    href: "/dashboard-admin/bookings",
+    label: "Manage Bookings",
+    Icon: TbBrandBooking,
+  },
+  {
+    href: "/dashboard-admin/manage-users",
+    label: "Manage User",
+    Icon: RiUserSettingsLine,
   },
 ];
 
-const UserDashboardSidebar = () => {
+
+
+
+const AdminDashboardSidebar = () => {
   const location = useLocation();
   const path = location.pathname;
+  const navigate = useNavigate();
 
   const { user } = useAppSelector((state) => state.auth);
 
@@ -35,7 +51,9 @@ const UserDashboardSidebar = () => {
     dispatch(logout(undefined));
   };
 
-  const handleGoBack = () => {};
+  const handleGoBack = () => {
+    navigate("/");
+  };
 
   return (
     <div className="flex flex-col gap-[15px] w-full md:w-fit">
@@ -46,7 +64,7 @@ const UserDashboardSidebar = () => {
         <FaArrowLeft /> Go Back
       </button>
       {user &&
-        userProfileLinks.map(({ Icon, href, label }, i) => (
+        adminProfileLinks.map(({ Icon, href, label }, i) => (
           <Link
             to={href}
             key={"profile" + i}
@@ -60,14 +78,11 @@ const UserDashboardSidebar = () => {
           </Link>
         ))}
 
-      <button
-        className="button-card flex items-center"
-        onClick={handleLogout}
-      >
+      <button className="button-card flex items-center" onClick={handleLogout}>
         <CiLogout /> Logout
       </button>
     </div>
   );
 };
 
-export default UserDashboardSidebar;
+export default AdminDashboardSidebar;

@@ -1,9 +1,14 @@
 import { Button, Form } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import CWForm from "../components/ui/form/CWForm";
 import { SubmitHandler } from "react-hook-form";
 import CWInput from "../components/ui/form/CWInput";
+import { useRegisterMutation } from "../redux/features/auth/authApi";
+import { toast } from "sonner";
+import { setUser } from "../redux/features/auth/authSlice";
+import { useAppDispatch } from "../redux/hook";
+import { verifyToken } from "../utils/verifyToken";
 
 type Inputs = {
   email: string;
@@ -11,16 +16,30 @@ type Inputs = {
 };
 
 const SignUpPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [register] = useRegisterMutation();
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    // const userInfo = {
-    //   email: data.email,
-    //   password: data.password,
-    // };
-    // const res = await login(userInfo).unwrap();
-    // const user = verifyToken(res.data.accessToken);
-    // console.log(user);
-    // dispatch(setUser({ user: user, token: res.data.accessToken }));
-    console.log(data);
+    try {
+      const res = await register(data).unwrap();
+      if (!res?.success) {
+        toast.error("Failed to register.");
+      }
+      if (res.error) {
+        toast.error("Failed to register.");
+      }
+      if (res.data) {
+        const userData = verifyToken(res.data.token);
+        dispatch(setUser({ user: userData, token: res.data.token }));
+        navigate(location.state?.from ? location.state?.from : "/");
+        toast.success("Successfully user registered.");
+      }
+    } catch (error) {
+      // console.log(error);
+      toast.error("Failed to register.");
+    }
   };
 
   return (

@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { pageRoutes } from "./pages.route";
-import UserDashboard from "../components/Layout/UserDashboard";
+import UserDashboardLayout from "../components/Layout/UserDashboardLayout";
 import { userRoutes } from "./userRoute";
 import UserProtectedRoute from "../components/Layout/ProtectedLayout/UserProtectedRoute";
 import AdminProtectedRoute from "../components/Layout/ProtectedLayout/AdminProtectedRoute";
 import { adminRoutes } from "./adminRoute";
-import AdminDashboard from "../components/Layout/AdminDashboard";
+import AdminDashboardLayout from "../components/Layout/AdminDashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     path: "/dashboard-user",
     element: (
       <UserProtectedRoute>
-        <UserDashboard />
+        <UserDashboardLayout />
       </UserProtectedRoute>
     ),
     children: [...userRoutes],
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     path: "/dashboard-admin",
     element: (
       <AdminProtectedRoute>
-        <AdminDashboard />
+        <AdminDashboardLayout />
       </AdminProtectedRoute>
     ),
     children: [...adminRoutes],

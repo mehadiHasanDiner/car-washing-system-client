@@ -1,5 +1,6 @@
 import { TService } from "./service.types";
 import { TSlot } from "./slots.types";
+import { TUser } from "./user";
 
 export type TCustomer = {
   name: string;
@@ -23,4 +24,29 @@ export type TBooking = {
   createdAt: string;
   updatedAt: string;
   __v: number;
+};
+
+export type TUserBooking = {
+  _id: string;
+  customer: TUser;
+  slot: TSlot;
+  service: TService;
+  payment: string;
+  status: "cancel" | "confirm";
+};
+
+export type TBookingCountDown = {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+};
+
+
+export type TFormattedBooking = {
+  id: string;
+  serviceName: string | null;
+  date: string | null;
+  startTime: string | null;
+  paymentStatus: "pending" | "completed" | "failed";
 };

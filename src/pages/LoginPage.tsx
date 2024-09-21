@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
 
     try {
       const { data, error: err } = await login(userInfo);
-      console.log(err);
+      console.log(data.data);
       const error: any = err;
       if (error) {
         if (error?.data?.message === "User Not Found") {
@@ -61,9 +61,9 @@ const LoginPage: React.FC = () => {
 
         return toast.error(error?.data?.message || "Unknown error occurs");
       }
-      const user = verifyToken(data.data.accessToken);
+      const user = verifyToken(data?.data?.token);
 
-      dispatch(setUser({ user: user, token: data.data.accessToken }));
+      dispatch(setUser({ user: user, token: data?.data?.token }));
       navigate(`/dashboard-${user?.role}`);
       toast.success("User successfully logged in!");
     } catch (err) {

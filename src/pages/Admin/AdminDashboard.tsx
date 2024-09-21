@@ -1,10 +1,8 @@
-import { Outlet } from "react-router-dom";
 
 const AdminDashboard = () => {
     return (
         <div>
-            <p>This is admin dashboard</p>
-            <Outlet />
+            <p>Admin Dashboard</p>
         </div>
     );
 };

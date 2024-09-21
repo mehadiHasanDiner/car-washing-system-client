@@ -10,7 +10,6 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
-
 const FeaturedService = () => {
   //   console.log(featuredServiceData);
 
@@ -31,7 +30,7 @@ const FeaturedService = () => {
       >
         <Slider>
           {featuredServiceData.map((slide) => (
-            <Slide index={slide?.id}>
+            <Slide index={slide?.id} key={slide?.id}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-100 rounded-xl ">
                 <div className="2/4">
                   <img
