@@ -11,18 +11,17 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../redux/hook";
 import { TService } from "../types/service.types";
-import { BiCaretRight } from "react-icons/bi";
+import { BiCaretRight, BiDollarCircle } from "react-icons/bi";
 import { TDateSlot } from "../types/slots.types";
 import Select, { SingleValue } from "react-select";
 import { dateTimeValidator } from "../utils/dateTimeValidator";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { setBookingData } from "../redux/features/bookings/bookings.slice";
-import { TbCoinTakaFilled } from "react-icons/tb";
-import { GiDuration } from "react-icons/gi";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import CWInput from "../components/ui/form/CWInput";
 import CWForm from "../components/ui/form/CWForm";
 import { useGetSingleServicesQuery } from "../redux/features/services/servicesApi";
+import { CiClock1 } from "react-icons/ci";
 
 type TSelectedDate = { label: string; value: string };
 
@@ -136,13 +135,13 @@ const ServiceDetailsPage = () => {
               <div className="border-b border-slate-200 pb-3 space-y-1">
                 <h3 className="text-3xl font-semibold">{serviceData?.name}</h3>
                 <div className="flex items-center gap-1 text-sm font-medium">
-                  <GiDuration className="mt-[1.5px] text-lg" />
+                  <CiClock1 className="mt-[1.5px] text-lg" />
                   <span>{serviceData?.duration} Min</span>
                 </div>
               </div>
               <div className="pb-3 border-b border-b-slate-200 space-y-2">
                 <div className="flex items-center gap-1 text-sm font-medium">
-                  <TbCoinTakaFilled className="mt-[1.5px] text-lg text-slate-500" />
+                  <BiDollarCircle className="mt-[1.5px] text-lg text-slate-500" />
                   <h4 className="text-2xl text-purple-800 font-bold">
                     {serviceData?.price}
                   </h4>

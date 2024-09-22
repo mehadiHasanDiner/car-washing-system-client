@@ -1,13 +1,11 @@
-import { Breadcrumb, BreadcrumbItem } from "keep-react";
-import { useFetchAllReviewsQuery } from "../redux/features/review/review.api";
 import { TReview } from "../types/review";
 import { useNavigate } from "react-router-dom";
-import { PiCaretRightBold } from "react-icons/pi";
 import UserReviewCard from "../components/ui/homePage/ReviewSection/UserReviewCard";
+import { useGetAllReviewsQuery } from "../redux/features/review/review.api";
 
 const UserReview = () => {
   const { data: reviews, isLoading: fetchingReviews } =
-    useFetchAllReviewsQuery(undefined);
+    useGetAllReviewsQuery(undefined);
   const navigate = useNavigate();
 
   console.log(reviews);
@@ -16,13 +14,6 @@ const UserReview = () => {
       <section className=" my-20">
         <div className="container flex flex-col items-center">
           <h2 className="text-4xl font-bold">User Reviews</h2>
-          <Breadcrumb>
-            <BreadcrumbItem onClick={() => navigate("/")}>Home</BreadcrumbItem>
-            <BreadcrumbItem className="cursor-auto hover:text-black">
-              <PiCaretRightBold size={18} color="#455468" />
-              User Reviews
-            </BreadcrumbItem>
-          </Breadcrumb>
         </div>
       </section>
       <section>

@@ -48,7 +48,7 @@ const FeaturedService = () => {
                       <li key={index}> ✔ {feature}</li>
                     ))}
                   </ul>
-                  <Button className="button-primary">Add to Compare </Button>
+            
                 </div>
               </div>
             </Slide>

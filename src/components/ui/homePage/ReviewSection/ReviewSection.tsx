@@ -25,9 +25,9 @@ const ReviewSection = () => {
         feedback,
         user: user?.name,
       };
-      // setReviews([...reviews, newReview]);
-      // setRating(0);
-      // setFeedback("");
+      setReviews([...reviews, newReview]);
+      setRating(0);
+      setFeedback("");
     }
   };
 

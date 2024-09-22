@@ -3,7 +3,7 @@ import { baseApi } from "../../api/baseApi";
 
 const reviewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    fetchAllReviews: builder.query({
+    getAllReviews: builder.query({
       providesTags: ["review"],
       query: (data: Record<string, unknown>[] | undefined) => {
         const params = new URLSearchParams();
@@ -31,4 +31,4 @@ const reviewApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useFetchAllReviewsQuery, useCreateReviewMutation } = reviewApi;
+export const { useGetAllReviewsQuery, useCreateReviewMutation } = reviewApi;

@@ -1,18 +1,10 @@
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Empty,
-  EmptyDescription,
-  EmptyImage,
-  EmptyTitle,
   Label,
   Radio,
   Slider,
   Input,
 } from "keep-react";
 import { useGetAllServicesQuery } from "../redux/features/services/servicesApi";
-import { BiCaretRight } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 import { TService } from "../types/service.types";
 import ServiceCardDetails from "../components/ui/servicePage/ServiceCardDetails";
@@ -26,7 +18,6 @@ const priceRanges = [
 ];
 
 const ServicePage = () => {
-  const navigate = useNavigate();
   const [sort, setSort] = useState("");
   const [search, setSearch] = useState("");
   const [priceRange, setPriceRange] = useState<number[] | []>([0, 250]);
@@ -59,16 +50,9 @@ const ServicePage = () => {
 
   return (
     <>
-      <section className="bg-slate-100">
-        <div className="container flex flex-col items-center">
+      <section className="bg-slate-100 py-8">
+        <div className="container flex flex-col items-center ">
           <h2 className="text-4xl font-bold">All Services</h2>
-          <Breadcrumb>
-            <BreadcrumbItem onClick={() => navigate("/")}>Home</BreadcrumbItem>
-            <BreadcrumbItem className="cursor-auto hover:text-black">
-              <BiCaretRight size={18} color="#455468" />
-              Services
-            </BreadcrumbItem>
-          </Breadcrumb>
         </div>
       </section>
       <section className="bg-slate-50">
@@ -121,7 +105,7 @@ const ServicePage = () => {
                 </div>
                 <div className="bg-white p-5">
                   <h4 className="text-lg font-semibold border-b border-b-slate-200 pb-2 mb-4">
-                    Sort by
+                    Sort service by
                   </h4>
                   <div className="flex flex-col gap-2">
                     <fieldset className="flex items-center gap-2">
@@ -147,26 +131,8 @@ const ServicePage = () => {
               </div>
             </div>
             {services?.data?.length < 1 && !isServiceLoading ? (
-              <div className="col-span-3">
-                <Empty>
-                  <EmptyImage>
-                    <img
-                      src="https://staticmania.cdn.prismic.io/staticmania/a8befbc0-90ae-4835-bf37-8cd1096f450f_Property+1%3DSearch_+Property+2%3DSm.svg"
-                      height={234}
-                      width={350}
-                      alt="404"
-                    />
-                  </EmptyImage>
-                  <EmptyTitle className="mb-[14px] mt-5">
-                    Sorry, No Services Available!
-                  </EmptyTitle>
-                  <EmptyDescription className="mb-8">
-                    We couldn't find any services matching your criteria. Please
-                    try adjusting your filters or check back later for updates.
-                    We're constantly adding new services, so be sure to visit us
-                    again soon!
-                  </EmptyDescription>
-                </Empty>
+              <div className="col-span-3 text-center ">
+                <h1 className="text-4xl">No data found</h1>
               </div>
             ) : (
               <div className="md:col-span-2 gap-5 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
