@@ -12,6 +12,7 @@ interface CWInputProps {
   name: string;
   label?: string | React.ReactNode;
   rules?: RegisterOptions;
+  defaultValue?: string | any;
   [key: string]: any;
 }
 
@@ -33,6 +34,7 @@ const CWInput: React.FC<CWInputProps> = ({
   label,
   rules,
   placeholder,
+  defaultValue,
 }) => {
   const renderInput = (field: ControllerRenderProps) => {
     switch (type) {
@@ -50,7 +52,13 @@ const CWInput: React.FC<CWInputProps> = ({
         );
       case "email":
         return (
-          <Input {...field} placeholder={placeholder} type={type} id={name} />
+          <Input
+            {...field}
+            placeholder={placeholder}
+            type={type}
+            id={name}
+            defaultValue={defaultValue}
+          />
         );
       case "phone":
         return (
@@ -70,6 +78,7 @@ const CWInput: React.FC<CWInputProps> = ({
             placeholder={placeholder}
             type={type}
             id={name}
+            defaultValue={defaultValue}
           />
         );
     }

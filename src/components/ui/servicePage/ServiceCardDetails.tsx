@@ -17,10 +17,7 @@ const ServiceCardDetails = ({ service }: { service: TService }) => {
             </div>
             <div className="space-y-2 pt-5">
                 <div className="flex items-center gap-3 text-slate-700">
-                    {/* <div className="flex items-center gap-1 text-sm font-medium">
-                        <FaStar className="text-cws-yellow" />
-                        <span>{service?.rating}</span>
-                    </div> */}
+                  
 
                     <div className="flex items-center gap-1 text-sm font-medium">
                         <GiDuration className="mt-[1.5px] text-lg" />
@@ -35,7 +32,7 @@ const ServiceCardDetails = ({ service }: { service: TService }) => {
                 <p className="text-slate-700">{service?.description}</p>
                 <button
                     onClick={() => navigate(`/services/${service?._id}`)}
-                    className="text-cws-yellow flex items-center gap-2"
+                    className="text-purple-800 flex items-center gap-2"
                 >
                     Book Service <FaLongArrowAltRight className="mt-1" />
                 </button>

@@ -143,7 +143,7 @@ const ServiceDetailsPage = () => {
               <div className="pb-3 border-b border-b-slate-200 space-y-2">
                 <div className="flex items-center gap-1 text-sm font-medium">
                   <TbCoinTakaFilled className="mt-[1.5px] text-lg text-slate-500" />
-                  <h4 className="text-2xl text-cws-yellow font-bold">
+                  <h4 className="text-2xl text-purple-800 font-bold">
                     {serviceData?.price}
                   </h4>
                 </div>
@@ -231,7 +231,7 @@ const ServiceDetailsPage = () => {
                       disabled={!selectedSlot}
                       onClick={() => setModalOpen(true)}
                       size="md"
-                      className="bg-cws-yellow hover:bg-cws-yellow/80 active:bg-cws-yellow disabled:bg-cws-yellow/80"
+                      className="bg-purple-700 hover:bg-purple-700 active:bg-purple-700 disabled:bg-purple-700"
                     >
                       Book this service
                     </Button>
@@ -295,7 +295,7 @@ const ServiceDetailsPage = () => {
                             </div>
                             <Button
                               type="submit"
-                              className={`bg-cws-yellow hover:bg-cws-yellow/90 w-full`}
+                              className={`bg-purple-800 hover:bg-purple-800 w-full`}
                             >
                               Continue Booking
                             </Button>

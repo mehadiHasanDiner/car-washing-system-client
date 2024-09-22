@@ -84,7 +84,7 @@ const ServicePage = () => {
                     name="search"
                     placeholder="Write service name..."
                     onChange={(e) => handleChange(e)}
-                    className="focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:border-cws-yellow"
+                    className="focus-visible:!ring-0 focus-visible:!ring-offset-0 focus-visible:border-purple-800"
                   />
                 </div>
                 <div className="bg-white p-5 pb-0">

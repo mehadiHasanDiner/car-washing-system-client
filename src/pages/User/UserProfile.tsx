@@ -5,13 +5,24 @@ import { format } from "date-fns";
 import { useGetAnUserQuery } from "../../redux/features/auth/authApi";
 
 const UserProfile = () => {
-  const { isLoading, user } = useAppSelector((state) => state.auth);
-  const { data: userData } = useGetAnUserQuery(
+  const { user } = useAppSelector((state) => state.auth);
+  const { data: userData, isLoading } = useGetAnUserQuery(
     (user?.email as string) || undefined
   );
 
   if (isLoading) {
-    return <div>lllll</div>;
+    return (
+      <div className="bg-purple-200 animate-pulse w-full h-[210px] rounded p-6 flex items-center gap-5">
+        <div className="w-40 h-40 basis-40 shrink-0 bg-purple-300 rounded-full"></div>
+        <div className="space-y-2 w-full">
+          <div className="w-full h-10 bg-purple-300 rounded"></div>
+          <div className="w-full h-5 bg-purple-300 rounded"></div>
+          <div className="w-full h-5 bg-purple-300 rounded"></div>
+          <div className="w-full h-5 bg-purple-300 rounded"></div>
+          <div className="w-full h-5 bg-purple-300 rounded"></div>
+        </div>
+      </div>
+    );
   }
   if (!user) {
     return <></>;
