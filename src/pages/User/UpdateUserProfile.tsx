@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   useGetAnUserQuery,
   useUpdateProfileMutation,
@@ -14,7 +13,7 @@ import { Button } from "keep-react";
 
 const UpdateUserProfile = () => {
   const [updateProfile] = useUpdateProfileMutation();
-  const user = useAppSelector((state) => state.auth.user);
+  const user = useAppSelector((state: any) => state.auth.user);
   const { data: userInfo, isLoading: isUserLoading } = useGetAnUserQuery(
     user?.email
   );

@@ -22,17 +22,6 @@ const LoginPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm({
-  //   defaultValues: {
-  //     email: "mehadi@gmail.com",
-  //     password: "123456",
-  //   },
-  // });
-
   const defaultValues = {
     email: "mehadi@gmail.com",
     password: "123456",
@@ -61,7 +50,7 @@ const LoginPage: React.FC = () => {
 
         return toast.error(error?.data?.message || "Unknown error occurs");
       }
-      const user = verifyToken(data?.data?.token);
+      const user: any = verifyToken(data?.data?.token);
 
       dispatch(setUser({ user: user, token: data?.data?.token }));
       navigate(`/dashboard-${user?.role}`);

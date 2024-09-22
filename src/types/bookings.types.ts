@@ -33,6 +33,9 @@ export type TUserBooking = {
   service: TService;
   payment: string;
   status: "cancel" | "confirm";
+  slotId: "string";
+  vehicleType: string;
+  updatedAt: Date;
 };
 
 export type TBookingCountDown = {
@@ -41,7 +44,6 @@ export type TBookingCountDown = {
   minutes: number;
   seconds: number;
 };
-
 
 export type TFormattedBooking = {
   id: string;

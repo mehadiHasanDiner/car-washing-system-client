@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { useGetAnUserQuery } from "../../redux/features/auth/authApi";
 
 const UserProfile = () => {
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state: any) => state.auth);
   const { data: userData, isLoading } = useGetAnUserQuery(
     (user?.email as string) || undefined
   );

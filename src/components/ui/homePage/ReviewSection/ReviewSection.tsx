@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../../redux/hook";
 import { Button, Card, Input, Rate, Typography } from "antd";
@@ -12,7 +12,7 @@ type TReview = {
 const { TextArea } = Input;
 
 const ReviewSection = () => {
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state: any) => state.auth);
   const [reviews, setReviews] = useState<TReview[]>([]);
   const [rating, setRating] = useState<number>(0);
   const [feedback, setFeedback] = useState<string>("");

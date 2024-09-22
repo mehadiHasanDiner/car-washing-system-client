@@ -53,6 +53,7 @@ const HeroSection = () => {
     time: number,
     progress: number
   ) => {
+    console.log(s);
     if (progressCircle.current) {
       progressCircle.current.style.setProperty("--progress", `${1 - progress}`);
     }
@@ -90,9 +91,7 @@ const HeroSection = () => {
                   <button className=" button-primary mr-2 text-sm">
                     Schedule Service
                   </button>
-                  <button className="button-secondary">
-                    Browse Bookings
-                  </button>
+                  <button className="button-secondary">Browse Bookings</button>
                 </div>
               </div>
             </div>

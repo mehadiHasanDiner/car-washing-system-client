@@ -1,4 +1,4 @@
-import { FaRegStar, FaQuoteLeft, FaQuoteRight, FaStar } from "react-icons/fa6";
+import { FaRegStar, FaQuoteLeft, FaStar } from "react-icons/fa6";
 import { TReview } from "../../../../types/review";
 import { TUser } from "../../../../types/user";
 
@@ -23,9 +23,8 @@ const UserReviewCard = ({ review }: { review: TReview }) => {
         </div>
       </div>
       <div className="absolute  -left-1 -top-4 text-6xl">
-        <FaQuoteLeft color="purple"  size={36}/>
+        <FaQuoteLeft color="purple" size={36} />
       </div>
-      
     </div>
   );
 };

@@ -14,17 +14,23 @@ import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { Button } from "antd";
 import { logout } from "../redux/features/auth/authSlice";
 
-type UserRole = "admin" | "user";
+// type UserRole = "admin" | "user";
+
+// type TUserProp = {
+//   id: string;
+//   name: string;
+//   role: UserRole;
+// };
 
 type TNavItem = {
   icon: ReactNode;
   name: string;
-  path?: string | UserRole;
+  path?: string;
 };
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user } = useAppSelector((state) => state.auth) || null;
+  const { user } = useAppSelector((state: any) => state.auth);
   // console.log(user);
 
   const navLinks: TNavItem[] = [

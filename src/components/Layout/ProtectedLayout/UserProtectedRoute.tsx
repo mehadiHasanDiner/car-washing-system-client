@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { Navigate } from "react-router-dom";
 
 const UserProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const { user, isLoading, token } = useAppSelector((state) => state.auth);
+  const { token } = useAppSelector((state) => state.auth);
 
   if (!token) {
     toast.error("You are not authorized.");

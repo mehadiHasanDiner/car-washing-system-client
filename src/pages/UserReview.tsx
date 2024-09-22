@@ -1,12 +1,10 @@
 import { TReview } from "../types/review";
-import { useNavigate } from "react-router-dom";
 import UserReviewCard from "../components/ui/homePage/ReviewSection/UserReviewCard";
 import { useGetAllReviewsQuery } from "../redux/features/review/review.api";
 
 const UserReview = () => {
   const { data: reviews, isLoading: fetchingReviews } =
     useGetAllReviewsQuery(undefined);
-  const navigate = useNavigate();
 
   console.log(reviews);
   return (
