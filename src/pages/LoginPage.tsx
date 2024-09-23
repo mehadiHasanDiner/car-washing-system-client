@@ -23,8 +23,8 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   const defaultValues = {
-    email: "mehadi@gmail.com",
-    password: "123456",
+    // email: "mehadi@gmail.com",
+    // password: "123456",
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
